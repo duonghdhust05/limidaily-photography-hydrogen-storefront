@@ -1,0 +1,41 @@
+name: Continuous Integration (CI)
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality-gates:
+    name: Typecheck, Lint, Test & Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js (LTS 22.x)
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: 1. TypeScript Strict Typecheck
+        run: npm run typecheck
+
+      - name: 2. ESLint Code Standard Check
+        run: npm run lint
+
+      - name: 3. Vitest Unit & Integration Tests (112 tests)
+        run: npm run test
+
+      - name: 4. Production Bundle Build Check
+        run: npm run build

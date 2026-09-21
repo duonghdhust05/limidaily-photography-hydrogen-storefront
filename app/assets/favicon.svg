@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+  <!-- Chassis Base -->
+  <rect width="32" height="32" rx="4" fill="#111827"/>
+  <!-- Outer Lens Barrel Ring -->
+  <circle cx="16" cy="16" r="11" stroke="#D1D5DB" stroke-width="1.5" fill="none"/>
+  <!-- Optical Coating Ring -->
+  <circle cx="16" cy="16" r="7.5" stroke="#0D9488" stroke-width="1" stroke-dasharray="3.5 1.5" fill="#1E293B"/>
+  <!-- Precision Alignment Reticle Ticks -->
+  <line x1="16" y1="2" x2="16" y2="6" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="square"/>
+  <line x1="16" y1="26" x2="16" y2="30" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="square"/>
+  <line x1="2" y1="16" x2="6" y2="16" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="square"/>
+  <line x1="26" y1="16" x2="30" y2="16" stroke="#9CA3AF" stroke-width="1.5" stroke-linecap="square"/>
+  <!-- Signature Shutter Focal Point -->
+  <rect x="13" y="13" width="6" height="6" rx="1" fill="#EA580C" stroke="#C2410C" stroke-width="1"/>
+</svg>

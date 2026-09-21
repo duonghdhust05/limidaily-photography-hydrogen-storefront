@@ -1,0 +1,29 @@
+#!/bin/sh
+
+# Đọc thông điệp commit từ tệp tạm
+COMMIT_MSG_FILE="$1"
+COMMIT_MSG=$(head -n 1 "$COMMIT_MSG_FILE")
+
+# Biểu thức chính quy kiểm tra định dạng Conventional Commits
+PATTERN="^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert|deploy)(\([a-zA-Z0-9_\-\/]+\))?: .{1,100}$"
+
+if echo "$COMMIT_MSG" | grep -Eq "$PATTERN"; then
+  echo "✅ [Commit-Msg Valid] Thông điệp commit hợp lệ theo chuẩn Conventional Commits."
+  exit 0
+else
+  echo ""
+  echo "❌ [CONVENTIONAL COMMIT ERROR] Thông điệp commit không đúng định dạng chuẩn!"
+  echo "👉 Định dạng bắt buộc: <type>(<scope>): <mô tả ngắn bằng tiếng Anh>"
+  echo "👉 Hoặc:              <type>: <mô tả ngắn>"
+  echo ""
+  echo "Các type hợp lệ: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert, deploy"
+  echo "Ví dụ commit hợp lệ:"
+  echo "  - feat(cart): implement headless cart mutations and session cookie"
+  echo "  - fix(currency): fix price rounding in VN market"
+  echo "  - docs(oxygen): update deployment runbook and secret variables guide"
+  echo "  - deploy(oxygen): deploy production build to shopify oxygen edge"
+  echo ""
+  echo "Thông điệp bạn vừa nhập: \"$COMMIT_MSG\""
+  echo ""
+  exit 1
+fi
